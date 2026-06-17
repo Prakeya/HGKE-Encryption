@@ -1,279 +1,115 @@
 # Hybrid Graph-Key Encryption (HGKE)
+### Graph Theory meets Modular Arithmetic — a new approach to secure encryption.
+
+---
 
 ## Overview
 
-Hybrid Graph-Key Encryption (HGKE) is a novel encryption framework that combines Graph Theory and Modular Arithmetic to create a secure, scalable, and efficient encryption system.
+HGKE is a novel encryption framework that combines **Graph Theory** and **Modular Arithmetic** to build a secure, scalable, and efficient cryptographic system.
 
-The project introduces a graph-based key management approach where message characters are represented as graph nodes, while modular arithmetic is used to perform cryptographic transformations. This hybrid design enhances security, simplifies key management, and provides a foundation for future post-quantum secure communication systems.
-
----
-
-## Abstract
-
-In modern communication systems, secure data transmission and efficient key management remain critical challenges. Traditional encryption methods often struggle with scalability and may become vulnerable to future quantum computing attacks.
-
-Hybrid Graph-Key Encryption (HGKE) addresses these challenges by integrating graph structures with modular arithmetic-based encryption techniques. The system provides:
-
-- Enhanced confidentiality
-- Secure key management
-- Efficient encryption and decryption
-- Scalability for multi-user environments
-- Potential resistance against future quantum attacks
+Message characters are represented as graph nodes, while modular arithmetic performs the cryptographic transformations. This hybrid design enhances security, simplifies key management, and lays a foundation for post-quantum resilient communication.
 
 ---
 
-## Problem Statement
+## The Problem
 
-Current encryption systems face several challenges:
+Modern encryption faces mounting pressure:
 
-- Vulnerability to emerging quantum attacks
-- Complex key management for large networks
-- Limited scalability in group communication systems
-- Increased computational overhead in secure communication
+- Quantum computing threatens classical encryption methods
+- Key management becomes unwieldy at scale
+- Group communication systems lack efficient secure architectures
+- Computational overhead grows with network size
 
-HGKE aims to solve these problems by introducing graph-based key structures combined with modular arithmetic operations.
+HGKE addresses each of these by introducing graph-based key structures paired with modular arithmetic operations.
 
 ---
 
-## Objectives
+## How It Works
 
-### Enhanced Security
+### 1. Message Representation
+Each character is converted to a numerical value (A=1, B=2 ... Z=26) and becomes a **node** in a graph.
 
-Develop a secure encryption framework using graph theory and modular arithmetic.
+### 2. Graph Construction
+Nodes are connected in message sequence, preserving character order as graph edges.
+H → E → L → L → O
 
-### Novel Key Management
+### 3. Key Generation
+A secret key `k` is selected where:
+gcd(k, 26) = 1
+Valid keys: `1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25`
 
-Introduce graph-based cryptographic key generation and distribution.
+### 4. Encryption
+C = K × X (mod 26)
+`X` = plaintext value · `K` = secret key · `C` = ciphertext value
 
-### Operational Efficiency
+### 5. Decryption
+X = K⁻¹ × C (mod 26)
+The modular inverse of K restores the original message, with graph connections preserving character order.
 
-Achieve secure encryption while maintaining practical computational performance.
+---
 
-### Post-Quantum Resilience
+## System Workflow
+Input → Message Conversion → Graph Construction → Key Generation
 
-Provide a foundation for future encryption systems capable of resisting quantum computing threats.
+→ Encryption → Ciphertext → Secure Transmission → Decryption → Output
 
 ---
 
 ## Key Features
 
-- Hybrid Graph-Based Encryption
-- Modular Arithmetic Cryptography
-- Dynamic Key Management
-- Secure Group Communication
-- Scalable Architecture
-- Graph Visualization of Encryption Flow
-- Efficient Encryption and Decryption
-- Future-Ready Security Design
+- Graph-based encryption with visual flow representation
+- Modular arithmetic cryptographic transformations
+- Dynamic key generation and management
+- Scalable multi-user architecture
+- Post-quantum resilience foundation
 
 ---
 
-## Methodology
+## Tech Stack
 
-### Step 1: Message Representation
-
-Each character of the message is converted into a numerical value:
-
-```text
-A = 1
-B = 2
-...
-Z = 26
-```
-
-Each character becomes a node in a graph.
-
-### Step 2: Graph Construction
-
-Nodes are connected according to message sequence and relationships.
-
-Example:
-
-```text
-H → E → L → L → O
-```
-
-Graph edges preserve character order and structure.
-
-### Step 3: Key Generation
-
-A valid secret key `k` is selected such that:
-
-```text
-gcd(k, 26) = 1
-```
-
-Example valid keys:
-
-```text
-1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25
-```
-
-### Step 4: Encryption
-
-Encryption Formula:
-
-```text
-C = K × X (mod 26)
-```
-
-Where:
-
-- X = Plaintext value
-- K = Secret key
-- C = Ciphertext value
-
-### Step 5: Graph Mapping
-
-The encrypted values remain associated with graph nodes.
-
-Graph topology adds an additional security layer.
-
-### Step 6: Decryption
-
-Decryption Formula:
-
-```text
-X = K⁻¹ × C (mod 26)
-```
-
-Where:
-
-- K⁻¹ = Modular inverse of K
-
-The original message order is restored using graph connections.
-
----
-
-## System Workflow
-
-```text
-User Input
-     │
-     ▼
-Message Conversion
-     │
-     ▼
-Graph Construction
-     │
-     ▼
-Key Generation
-     │
-     ▼
-Encryption
-     │
-     ▼
-Ciphertext Output
-     │
-     ▼
-Secure Transmission
-     │
-     ▼
-Decryption
-     │
-     ▼
-Original Message
-```
-
----
-
-## Technologies Used
-
-### Programming Language
-
-- Python
-
-### Cryptography Libraries
-
-- math
-- cryptography (optional)
-- PyCryptodome (optional)
-
-### Graph Libraries
-
-- NetworkX
-- Matplotlib
-
-### Testing Tools
-
-- unittest
-- time
+| Category | Tools |
+|---|---|
+| Language | Python |
+| Graph | NetworkX, Matplotlib |
+| Cryptography | math, PyCryptodome *(optional)* |
+| Testing | unittest, time |
 
 ---
 
 ## Applications
 
-### Secure Group Communication
-
-- Corporate Communication
-- Team Collaboration Systems
-- Educational Platforms
-
-### Internet of Things (IoT)
-
-- Smart Homes
-- Healthcare Devices
-- Industrial IoT Networks
-
-### Secure Data Transmission
-
-- Cloud Systems
-- Distributed Networks
-- Secure Messaging Applications
+- **Secure Group Communication** — corporate, academic, and team platforms
+- **IoT Networks** — smart homes, healthcare devices, industrial systems
+- **Data Transmission** — cloud, distributed networks, secure messaging
 
 ---
 
-## Advantages
+## Limitations & Future Work
 
-- Strong Security
-- Scalable Key Management
-- Efficient Encryption
-- Graph-Based Complexity
-- Easy Key Distribution
-- Future Quantum-Resistant Potential
-- Suitable for Multi-User Systems
+**Current challenges:**
+- Formal security validation pending
+- Performance optimisation for real-time use
+- Quantum security analysis not yet complete
 
----
-
-## Challenges
-
-- Formal Security Validation
-- Performance Optimization
-- Real-Time Implementation
-- Quantum Security Analysis
-
----
-
-## Future Enhancements
-
-- Integration with Post-Quantum Cryptography
-- Lattice-Based Encryption Support
-- Blockchain-Based Key Distribution
-- Real-Time Secure Communication Systems
-- Large-Scale Network Deployment
+**Planned enhancements:**
+- Lattice-based and post-quantum cryptography integration
+- Blockchain-based key distribution
+- Large-scale network deployment
 
 ---
 
 ## Research References
 
-1. Modular Inverse Based Secured Data Transmission by the Application of Graph Theory (2020)
-2. Graph Key-Based Encryption Technique for IoT Networks: Graph-Affine Cipher (2023)
-3. Some Graph-Based Encryption Techniques
-4. A Graph-Based Cryptographic Framework Using Complete Graphs and Lower Triangular Identity Key Matrices (2023)
-5. Text Encryption with Graph Theory Based Key Generation (2024)
-6. On Graph-Based Cryptography and Symbolic Computations (2007)
+1. *Modular Inverse Based Secured Data Transmission by the Application of Graph Theory* (2020)
+2. *Graph Key-Based Encryption Technique for IoT Networks: Graph-Affine Cipher* (2023)
+3. *A Graph-Based Cryptographic Framework Using Complete Graphs and Lower Triangular Identity Key Matrices* (2023)
+4. *Text Encryption with Graph Theory Based Key Generation* (2024)
+5. *On Graph-Based Cryptography and Symbolic Computations* (2007)
 
 ---
 
-## Team Members
+## Team
 
-- Prakeya S
-- Harshini Sree
-- Thiyaanesh N R
-- Yuvanidhi R
+**Prakeya S · Harshini Sree · Thiyaanesh N R · Yuvanidhi R**
 
----
-
-## License
-
-This project is developed for academic and research purposes.
+*Developed for academic and research purposes.*
